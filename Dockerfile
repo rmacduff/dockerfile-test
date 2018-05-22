@@ -1,10 +1,16 @@
-FROM ubuntu:16.04
+FROM centos
 
-RUN apt-get update \
-    && apt-get install -y nginx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
+      && yum update -y
 
-EXPOSE 80
-CMD ["nginx"]
+COPY requirements.txt .
+
+RUN yum install -y python-pip \
+      && pip install -r requirements.txt
+
+
+COPY . src/
+
+EXPOSE 8080
+
+CMD ["python","/src/app.py"]
