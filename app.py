@@ -20,7 +20,7 @@ REDIS_HOST = get_env_variable("REDIS_HOST")
 
 def connection_test(name, address, port):
     s = socket.socket()
-    s.settimeout(5)
+    s.settimeout(2)
     try:
         #s.connect((address, port), timeout=10000)
         s.connect((address, port))
@@ -35,10 +35,10 @@ def connection_test(name, address, port):
 @app.route('/')
 def test():
     result = ""
-    result += connection_test("Fail check", "10.255.255.1", 9999)
     result += connection_test("postgres", DATABASE_HOST, 5432)
     result += connection_test("redis", REDIS_HOST, 6379)
     result += connection_test("app_be", "127.0.0.1", 9090)
+    result += connection_test("Fail check", "10.255.255.1", 9999)
     return result
 
 
