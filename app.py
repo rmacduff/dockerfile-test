@@ -15,13 +15,13 @@ def get_env_variable(name):
         raise Exception(message)
 
 # the values of those depend on your setup
-POSTGRES_HOST = get_env_variable("POSTGRES_HOST")
+POSTGRES_HOST = get_env_variable("DATABASE_HOST")
 
 
 @app.route('/')
 def test():
     s = socket.socket()
-    address = POSTGRES_HOST
+    address = DATABASE_HOST
     port = 5432
     try:
         s.connect((address, port))
