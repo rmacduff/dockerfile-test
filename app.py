@@ -32,9 +32,10 @@ def connection_test(name, address, port):
 
 @app.route('/')
 def test():
-    connection_test("postgres", DATABASE_HOST, 5432)
-    connection_test("redis", REDIS_HOST, 6379)
-    return "Hello!"
+    result = ""
+    result += connection_test("postgres", DATABASE_HOST, 5432)
+    result += connection_test("redis", REDIS_HOST, 6379)
+    return result
 
 
 if __name__ == '__main__':
