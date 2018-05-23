@@ -16,6 +16,7 @@ def get_env_variable(name):
 
 # the values of those depend on your setup
 DATABASE_HOST = get_env_variable("DATABASE_HOST")
+REDIS_HOST = get_env_variable("REDIS_HOST")
 
 def connection_test(name, address, port):
     s = socket.socket()
