@@ -15,7 +15,7 @@ def get_env_variable(name):
         raise Exception(message)
 
 # the values of those depend on your setup
-POSTGRES_HOST = get_env_variable("DATABASE_HOST")
+DATABASE_HOST = get_env_variable("DATABASE_HOST")
 
 
 @app.route('/')
