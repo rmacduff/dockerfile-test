@@ -17,19 +17,22 @@ def get_env_variable(name):
 # the values of those depend on your setup
 DATABASE_HOST = get_env_variable("DATABASE_HOST")
 
+def connection_test(name, address, port):
+    s = socket.socket()
+    try:
+        s.connect((address, port))
+        return '<h1>{} Connection: ok</h1>'.format(name)
+    except:
+        return '<h1>{} Connection: failed</h1>'.format(name)
+    finally:
+        s.close()
+
+
 
 @app.route('/')
 def test():
-    s = socket.socket()
-    address = DATABASE_HOST
-    port = 5432
-    try:
-        s.connect((address, port))
-        return '<h1>DB Connection: ok</h1>'
-    except:
-        return '<h1>Something is broken.</h1>'
-    finally:
-        s.close()
+    connection_test("postgres", DATABASE_HOST, 5432)
+    connection_test("redis", REDIS_HOST, 6379)
     return "Hello!"
 
 
