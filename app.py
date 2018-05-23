@@ -21,7 +21,8 @@ REDIS_HOST = get_env_variable("REDIS_HOST")
 def connection_test(name, address, port):
     s = socket.socket()
     try:
-        s.connect((address, port), timeout=10000)
+        #s.connect((address, port), timeout=10000)
+        s.connect((address, port))
         return '<h1>{} Connection: ok</h1>'.format(name)
     except:
         return '<h1>{} Connection: failed</h1>'.format(name)
