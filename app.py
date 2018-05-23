@@ -37,6 +37,7 @@ def test():
     #result += connection_test("Fail check", "10.255.255.1", 9999)
     result += connection_test("postgres", DATABASE_HOST, 5432)
     result += connection_test("redis", REDIS_HOST, 6379)
+    result += connection_test("app_be", "127.0.0.1", 9090)
     return result
 
 
