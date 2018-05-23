@@ -33,6 +33,7 @@ def connection_test(name, address, port):
 @app.route('/')
 def test():
     result = ""
+    result += connection_test("Fail check", "10.255.255.1", 9999)
     result += connection_test("postgres", DATABASE_HOST, 5432)
     result += connection_test("redis", REDIS_HOST, 6379)
     return result
