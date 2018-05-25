@@ -17,6 +17,7 @@ def get_env_variable(name):
 # the values of those depend on your setup
 DATABASE_HOST = get_env_variable("DATABASE_HOST")
 REDIS_HOST = get_env_variable("REDIS_HOST")
+DATABASE_PASSWORD = get_env_variable("DATABASE_PASSWORD")
 
 def connection_test(name, address, port):
     s = socket.socket()
@@ -39,6 +40,7 @@ def test():
     result += connection_test("redis", REDIS_HOST, 6379)
     result += connection_test("app_be", "127.0.0.1", 9090)
     #result += connection_test("Fail check", "10.255.255.1", 9999)
+    result += "DATABASE_PASSWORD: {}".format(DATABASE_PASSWORD)
     return result
 
 
